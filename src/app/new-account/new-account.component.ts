@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { loggingService } from '../logging.Service';
+import { AccountsServices } from '../account.service';
 
 
 @Component({
@@ -10,18 +11,19 @@ import { loggingService } from '../logging.Service';
 })
 export class NewAccountComponent implements OnInit {
 
-  @Output() accountAdded = new EventEmitter<{name: string, status: string}>();
+ // @Output() accountAdded = new EventEmitter<{name: string, status: string}>();
   
-constructor(private loggingService: loggingService) { }
+constructor(private loggingService: loggingService, private accountsService: AccountsServices) { }
 
 
   ngOnInit() {
   }
 onCreateAccount(accountName: string, accountStatus: string){
-this.accountAdded.emit({
-  name: accountName,
-  status: accountStatus
-});
+// this.accountAdded.emit({
+//   name: accountName,
+//   status: accountStatus
+// });
+this.accountsService.addAccount(accountName, accountStatus);
 
 //console.log('A server status changed, new status: ' + accountName + ' '+ accountStatus);
 this.loggingService.logStatusChange(accountStatus);
