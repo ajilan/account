@@ -25,5 +25,6 @@ onSetTo(status: string){
 this.acccoutsServices.updateStatus(this.id, status)
 //console.log('A server status changed, new status: ' + status);
 //this.loggingService.logStatusChange(status)
+this.acccoutsServices.statusUpdated.emit(status);
 }
 }
